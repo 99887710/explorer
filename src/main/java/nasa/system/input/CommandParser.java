@@ -1,5 +1,6 @@
 package nasa.system.input;
 
+import nasa.system.command.Command;
 import nasa.system.exception.IllegalCommandException;
 
 import java.util.ArrayList;
@@ -7,14 +8,15 @@ import java.util.List;
 
 public class CommandParser implements Parsable {
     private Readable reader;
-    private List<String> commands = new ArrayList<>();
+    private List<String> messages = new ArrayList<>();
+    private List<Command> commands = new ArrayList<>();
 
     public CommandParser(Readable input) {
         this.reader = input;
     }
 
-    public List<String> parse(){
-        commands = reader.readInputs();
+    public List<Command> parse(){
+        messages = reader.readInputs();
         if (!validate())
             throw new IllegalCommandException();
 

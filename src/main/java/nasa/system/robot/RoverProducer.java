@@ -1,5 +1,6 @@
 package nasa.system.robot;
 
+import nasa.system.command.Command;
 import nasa.system.compass.Heading;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class RoverProducer implements Producible {
     private List<Robotic> robotics = new ArrayList<>();
 
     @Override
-    public List<Robotic> produce(List<String> commands) {
+    public List<Robotic> produce(List<Command> commands) {
         //read commands, produce
         num = (robotics.size() - 1) / 2;
         return robotics;

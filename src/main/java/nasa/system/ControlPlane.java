@@ -1,6 +1,7 @@
 package nasa.system;
 
 import nasa.system.airspace.Plateau;
+import nasa.system.command.Command;
 import nasa.system.input.Parsable;
 import nasa.system.robot.RoverProducer;
 import nasa.system.robot.Producible;
@@ -31,7 +32,7 @@ public class ControlPlane {
 
     public void start(){
         System.out.println("Initialised, Ready to accept commands.");
-        List<String> commands = parser.parse();
+        List<Command> commands = parser.parse();
         //manufacturing rovers
         RoverProducer roverProducer = (RoverProducer) producer;
         roverProducer.produce(commands);
