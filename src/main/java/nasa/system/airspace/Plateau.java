@@ -1,14 +1,19 @@
 package nasa.system.airspace;
 
-public class Plateau {
+public class Plateau implements Explorable {
     private String name;
     private int originX;
     private int originY;
     private int endX;
     private int endY;
 
+    public Plateau() { }
     public Plateau(String name) {
         this.name = name;
+    }
+
+    public boolean isPosValid(int x, int y){
+        return (x >= originX && x <= endX) && (y >= originY && y <= endY);
     }
 
     public String getName() {

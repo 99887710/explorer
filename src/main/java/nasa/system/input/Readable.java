@@ -1,6 +1,8 @@
 package nasa.system.input;
 
+import java.util.List;
+
 public interface Readable {
 
-    void readInput();
+    List<String> readInputs();
 }

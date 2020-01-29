@@ -1,7 +1,7 @@
 package nasa.system;
 
 import nasa.system.airspace.Plateau;
-import nasa.system.input.Readable;
+import nasa.system.input.Parsable;
 import nasa.system.robot.Rover;
 
 import java.util.List;
@@ -9,27 +9,30 @@ import java.util.List;
 public class ControlPlane {
     private Plateau plateau;
     private List<Rover> rovers;
-    private Readable input;
+    private Parsable parser;
 
 
-    public void init(Plateau plateau, Readable input, int originX, int originY, int endX, int endY){
+    public void init(Plateau plateau, Parsable parser, int originX, int originY, int endX, int endY){
         this.plateau = plateau;
-        this.input = input;
+        this.parser = parser;
         plateau.setOriginX(originX);
         plateau.setOriginY(originY);
         plateau.setEndX(endX);
         plateau.setEndY(endY);
     }
 
-    public void init(Plateau plateau, Readable input, int endX, int endY){
-        init(plateau, input, 0, 0, endX, endY);
+    public void init(Plateau plateau, Parsable parser, int endX, int endY){
+        init(plateau, parser, 0, 0, endX, endY);
     }
 
     public void start(){
         System.out.println("Initialised, Ready to accept commands.");
-        input.readInput();
+        parser.parse();
+        //manufacturing rovers
+        //action
 
     }
+
     public void placeRover(){
 
     }
