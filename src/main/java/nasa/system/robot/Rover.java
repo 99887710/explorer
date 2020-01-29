@@ -1,4 +1,4 @@
-package nasa;
+package nasa.system.robot;
 
 public class Rover {
     private int posX;

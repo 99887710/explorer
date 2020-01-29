@@ -1,10 +1,10 @@
-package nasa;
+package nasa.system.input;
 
 import java.util.Scanner;
 
-public class FromSystemIn implements Inputtable {
+public class FromSystemIn implements Readable {
 
-    public void getInput() {
+    public void readInput() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter the boundary");
         while (sc.hasNext()) {

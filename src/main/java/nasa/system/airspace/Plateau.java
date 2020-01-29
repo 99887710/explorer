@@ -1,4 +1,4 @@
-package nasa;
+package nasa.system.airspace;
 
 public class Plateau {
     private String name;
