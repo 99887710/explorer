@@ -2,6 +2,8 @@ package nasa.system;
 
 import nasa.system.airspace.Plateau;
 import nasa.system.input.Parsable;
+import nasa.system.robot.RoverProducer;
+import nasa.system.robot.Producible;
 import nasa.system.robot.Rover;
 
 import java.util.List;
@@ -10,6 +12,7 @@ public class ControlPlane {
     private Plateau plateau;
     private List<Rover> rovers;
     private Parsable parser;
+    private Producible producer;
 
 
     public void init(Plateau plateau, Parsable parser, int originX, int originY, int endX, int endY){
@@ -19,6 +22,7 @@ public class ControlPlane {
         plateau.setOriginY(originY);
         plateau.setEndX(endX);
         plateau.setEndY(endY);
+        producer = new RoverProducer();
     }
 
     public void init(Plateau plateau, Parsable parser, int endX, int endY){
@@ -27,8 +31,11 @@ public class ControlPlane {
 
     public void start(){
         System.out.println("Initialised, Ready to accept commands.");
-        parser.parse();
+        List<String> commands = parser.parse();
         //manufacturing rovers
+        RoverProducer roverProducer = (RoverProducer) producer;
+        roverProducer.produce(commands);
+        System.out.println(roverProducer.getNum());
         //action
 
     }

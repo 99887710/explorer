@@ -3,7 +3,7 @@ package nasa.system.robot;
 import nasa.system.compass.Heading;
 
 public class Rover implements Robotic {
-    private String name;
+    private String id;
     private int posX;
     private int posY;
     private Heading heading;
@@ -30,12 +30,12 @@ public class Rover implements Robotic {
         posY--;
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getPosX() {
