@@ -25,8 +25,11 @@ public class CommandParser implements Parsable {
     }
 
     public boolean validate(){
-        if (commands.size() % 2 == 0)
+        if (commands.size() == 0)
             return false;
+        else if (commands.size() % 2 == 0)
+            return false;
+
         return true;
     }
 }
