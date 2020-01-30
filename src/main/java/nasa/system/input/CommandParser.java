@@ -17,7 +17,6 @@ public class CommandParser implements Parsable {
 
     public List<Command> parse(){
         messages = reader.readInputs();
-        messages = reader.readInputs();
         if (!validate())
             throw new IllegalCommandException();
 
