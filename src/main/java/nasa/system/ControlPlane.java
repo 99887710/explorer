@@ -36,7 +36,7 @@ public class ControlPlane {
         //manufacturing rovers
         RoverProducer roverProducer = (RoverProducer) producer;
         roverProducer.produce(commands);
-        System.out.println(roverProducer.getNum());
+        System.out.println("Produced Rovers: " + roverProducer.getNum());
         //action
 
     }

@@ -3,7 +3,13 @@ package nasa.system.command;
 public class RobotPosCmd {
     private int x;
     private int y;
-    private Character heading;
+    private String heading;
+
+    public RobotPosCmd(int x, int y, String heading) {
+        this.x = x;
+        this.y = y;
+        this.heading = heading;
+    }
 
     public int getX() {
         return x;
@@ -21,11 +27,20 @@ public class RobotPosCmd {
         this.y = y;
     }
 
-    public Character getHeading() {
+    public String getHeading() {
         return heading;
     }
 
-    public void setHeading(Character heading) {
+    public void setHeading(String heading) {
         this.heading = heading;
+    }
+
+    @Override
+    public String toString() {
+        return "RobotPosCmd{" +
+                "x=" + x +
+                ", y=" + y +
+                ", heading=" + heading +
+                '}';
     }
 }

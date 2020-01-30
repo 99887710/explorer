@@ -1,11 +1,19 @@
 package nasa.system.command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RobotActionCmd {
-    private List<Character> actions;
+    private List<String> actions = new ArrayList<>();
 
-    public List<Character> getActions() {
+    public List<String> getActions() {
         return actions;
+    }
+
+    @Override
+    public String toString() {
+        return "RobotActionCmd{" +
+                "actions=" + actions +
+                '}';
     }
 }
