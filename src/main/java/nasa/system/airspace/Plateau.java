@@ -55,4 +55,14 @@ public class Plateau implements Explorable {
     public void setEndY(int endY) {
         this.endY = endY;
     }
+
+    @Override
+    public String toString() {
+        return "Plateau{" +
+                "originX=" + originX +
+                ", originY=" + originY +
+                ", endX=" + endX +
+                ", endY=" + endY +
+                '}';
+    }
 }

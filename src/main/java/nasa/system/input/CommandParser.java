@@ -1,6 +1,7 @@
 package nasa.system.input;
 
 import nasa.system.command.*;
+import nasa.system.compass.Heading;
 import nasa.system.exception.IllegalCommandException;
 
 import java.util.ArrayList;
@@ -25,9 +26,6 @@ public class CommandParser implements Parsable {
         for (int i = 1; i < messages.size(); i=i+2) {
             commands.add(parseRobotCmd(messages.get(i), messages.get(i+1)));
         }
-
-        System.out.println(commands);
-        //validate the inputs
         return commands;
     }
 
@@ -54,7 +52,7 @@ public class CommandParser implements Parsable {
         return new RobotPosCmd(
                 Integer.parseInt((String) pos[0]),
                 Integer.parseInt((String) pos[1]),
-                (String) pos[2]
+                Heading.valueOf((String) pos[2])
         );
     }
 

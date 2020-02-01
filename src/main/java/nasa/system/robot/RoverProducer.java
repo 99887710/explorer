@@ -1,5 +1,6 @@
 package nasa.system.robot;
 
+import nasa.system.command.CmdType;
 import nasa.system.command.Command;
 import nasa.system.compass.Heading;
 
@@ -13,7 +14,16 @@ public class RoverProducer implements Producible {
     @Override
     public List<Robotic> produce(List<Command> commands) {
         //read commands, produce
-        num = (robotics.size() - 1) / 2;
+        commands.stream()
+                .filter(command -> command.getCmdType() == CmdType.Robot)
+                .forEach(command -> {
+                    int robotPosX = command.getRobotPosCmd().getX();
+                    int robotPosY = command.getRobotPosCmd().getY();
+                    Heading robotHeading = command.getRobotPosCmd().getHeading();
+                    Rover rover = new Rover(robotPosX, robotPosY, robotHeading);
+                    robotics.add(rover);
+                });
+        num = robotics.size();
         return robotics;
     }
 

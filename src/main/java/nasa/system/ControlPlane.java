@@ -1,13 +1,17 @@
 package nasa.system;
 
 import nasa.system.airspace.Plateau;
+import nasa.system.command.CmdType;
 import nasa.system.command.Command;
+import nasa.system.exception.IllegalCommandException;
 import nasa.system.input.Parsable;
 import nasa.system.robot.RoverProducer;
 import nasa.system.robot.Producible;
 import nasa.system.robot.Rover;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ControlPlane {
     private Plateau plateau;
@@ -33,16 +37,25 @@ public class ControlPlane {
     public void start(){
         System.out.println("Initialised, Ready to accept commands.");
         List<Command> commands = parser.parse();
-        //manufacturing rovers
         RoverProducer roverProducer = (RoverProducer) producer;
+
+        configureBound(plateau, commands);
         roverProducer.produce(commands);
         System.out.println("Produced Rovers: " + roverProducer.getNum());
         //action
 
     }
 
-    public void placeRover(){
-
+    private void configureBound(Plateau plateau, List<Command> commands){
+        Optional<Command> foundCmd = commands.stream()
+                .filter(command -> command.getCmdType() == CmdType.Boundary)
+                .findAny();
+        if (foundCmd.isPresent()) {
+            Command boundCmd = foundCmd.get();
+            plateau.setEndX(boundCmd.getPlateauBoundCmd().getBoundX());
+            plateau.setEndY(boundCmd.getPlateauBoundCmd().getBoundY());
+        } else
+            throw new IllegalCommandException();
     }
 
     public Plateau getPlateau() {

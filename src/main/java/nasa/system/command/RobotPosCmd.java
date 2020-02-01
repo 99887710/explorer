@@ -1,11 +1,13 @@
 package nasa.system.command;
 
+import nasa.system.compass.Heading;
+
 public class RobotPosCmd {
     private int x;
     private int y;
-    private String heading;
+    private Heading heading;
 
-    public RobotPosCmd(int x, int y, String heading) {
+    public RobotPosCmd(int x, int y, Heading heading) {
         this.x = x;
         this.y = y;
         this.heading = heading;
@@ -27,11 +29,11 @@ public class RobotPosCmd {
         this.y = y;
     }
 
-    public String getHeading() {
+    public Heading getHeading() {
         return heading;
     }
 
-    public void setHeading(String heading) {
+    public void setHeading(Heading heading) {
         this.heading = heading;
     }
 
