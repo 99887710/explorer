@@ -5,13 +5,13 @@ import nasa.system.command.CmdType;
 import nasa.system.command.Command;
 import nasa.system.exception.IllegalCommandException;
 import nasa.system.input.Parsable;
+import nasa.system.robot.Robotic;
 import nasa.system.robot.RoverProducer;
 import nasa.system.robot.Producible;
 import nasa.system.robot.Rover;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class ControlPlane {
     private Plateau plateau;
@@ -40,9 +40,16 @@ public class ControlPlane {
         RoverProducer roverProducer = (RoverProducer) producer;
 
         configureBound(plateau, commands);
-        roverProducer.produce(commands);
+        List<Robotic> robotics = roverProducer.produce(commands, plateau);
         System.out.println("Produced Rovers: " + roverProducer.getNum());
         //action
+
+        for (Robotic robotic : robotics) {
+            Rover rover = (Rover) robotic;
+            rover.execute();
+            System.out.println(rover.toString());
+        }
+
 
     }
 

@@ -1,5 +1,6 @@
 package nasa.system.robot;
 
+import nasa.system.airspace.Explorable;
 import nasa.system.command.CmdType;
 import nasa.system.command.Command;
 import nasa.system.compass.Heading;
@@ -12,7 +13,7 @@ public class RoverProducer implements Producible {
     private List<Robotic> robotics = new ArrayList<>();
 
     @Override
-    public List<Robotic> produce(List<Command> commands) {
+    public List<Robotic> produce(List<Command> commands, Explorable explorable) {
         //read commands, produce
         commands.stream()
                 .filter(command -> command.getCmdType() == CmdType.Robot)
@@ -20,7 +21,8 @@ public class RoverProducer implements Producible {
                     int robotPosX = command.getRobotPosCmd().getX();
                     int robotPosY = command.getRobotPosCmd().getY();
                     Heading robotHeading = command.getRobotPosCmd().getHeading();
-                    Rover rover = new Rover(robotPosX, robotPosY, robotHeading);
+                    List<String> actions = command.getRobotActionCmd().getActions();
+                    Rover rover = new Rover(robotPosX, robotPosY, robotHeading, explorable, actions);
                     robotics.add(rover);
                 });
         num = robotics.size();
