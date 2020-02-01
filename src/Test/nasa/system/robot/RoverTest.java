@@ -1,6 +1,7 @@
 package nasa.system.robot;
 
 import nasa.system.airspace.Explorable;
+import nasa.system.airspace.Plateau;
 import nasa.system.command.Command;
 import nasa.system.compass.Heading;
 import org.junit.jupiter.api.Assertions;
@@ -14,19 +15,59 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RoverTest {
     Rover rover;
+    Plateau plateau;
 
     @BeforeEach
     void setUp() {
         int initPosX = 0;
         int initPosY = 0;
+        int endX = 5;
+        int endY = 5;
         Heading initHeading = Heading.N;
-        Explorable explorable = null;
+        plateau = new Plateau();
+        plateau.setEndX(endX);
+        plateau.setEndY(endY);
+
         List<String> actions = new ArrayList<>();
-        rover = new Rover(initPosX, initPosY, initHeading, explorable, actions);
+        rover = new Rover(initPosX, initPosY, initHeading, plateau, actions);
     }
 
     @Test
-    void moveForward() {
+    void moveForward_N() {
+        rover.moveForward();
+        assertEquals(0, rover.getPosX());
+        assertEquals(1, rover.getPosY());
+        assertEquals(Heading.N, rover.getHeading());
+    }
+
+    @Test
+    void moveForward_E() {
+        rover.setHeading(Heading.E);
+        rover.moveForward();
+        assertEquals(1, rover.getPosX());
+        assertEquals(0, rover.getPosY());
+        assertEquals(Heading.E, rover.getHeading());
+    }
+
+    @Test
+    void moveForward_S() {
+        rover.setHeading(Heading.S);
+        rover.setPosY(1);
+        rover.moveForward();
+        assertEquals(0, rover.getPosX());
+        assertEquals(0, rover.getPosY());
+        assertEquals(Heading.S, rover.getHeading());
+
+    }
+
+    @Test
+    void moveForward_W() {
+        rover.setHeading(Heading.W);
+        rover.setPosX(1);
+        rover.moveForward();
+        assertEquals(0, rover.getPosX());
+        assertEquals(0, rover.getPosY());
+        assertEquals(Heading.W, rover.getHeading());
     }
 
     @Test
