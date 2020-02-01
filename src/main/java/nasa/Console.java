@@ -14,11 +14,7 @@ public class Console {
         Parsable parser = new CommandParser(reader);
 
         ControlPlane controlPlane = new ControlPlane();
-        controlPlane.init(mars, parser, 10, 10);
+        controlPlane.init(mars, parser);
         controlPlane.start();
-
-        System.out.println(mars.getName());
-//        Readable inputtable = new FromSystemIn();
-//        inputtable.getInput();
     }
 }

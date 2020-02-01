@@ -34,6 +34,10 @@ public class ControlPlane {
         init(plateau, parser, 0, 0, endX, endY);
     }
 
+    public void init(Plateau plateau, Parsable parser) {
+        init(plateau, parser, 0, 0, 0, 0);
+    }
+
     public void start(){
         System.out.println("Initialised, Ready to accept commands.");
         List<Command> commands = parser.parse();
