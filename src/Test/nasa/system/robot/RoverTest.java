@@ -1,8 +1,6 @@
 package nasa.system.robot;
 
-import nasa.system.airspace.Explorable;
 import nasa.system.airspace.Plateau;
-import nasa.system.command.Command;
 import nasa.system.compass.Heading;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RoverTest {
     Rover rover;

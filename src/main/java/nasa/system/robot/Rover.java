@@ -4,6 +4,7 @@ import nasa.system.airspace.Explorable;
 import nasa.system.behaviour.ActionType;
 import nasa.system.compass.Heading;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rover implements Robotic {
@@ -13,6 +14,7 @@ public class Rover implements Robotic {
     private Heading heading;
     private Explorable explorable;
     private List<String> actions;
+    private List<Heading> headings = new ArrayList<>();
 
     public Rover(int posX, int posY, Heading heading, Explorable explorable, List<String> actions) {
         this.posX = posX;
@@ -20,6 +22,11 @@ public class Rover implements Robotic {
         this.heading = heading;
         this.explorable = explorable;
         this.actions = actions;
+
+        headings.add(Heading.N);
+        headings.add(Heading.E);
+        headings.add(Heading.S);
+        headings.add(Heading.W);
     }
 
     public void execute(){
@@ -65,23 +72,19 @@ public class Rover implements Robotic {
     }
 
     public void turnLeft(){
-        if(heading == Heading.N)
-            heading = Heading.W;
-        else if(heading == Heading.E)
-               heading = Heading.N;
-        else if (heading == Heading.S)
-            heading = Heading.E;
-        else heading = Heading.S;
+        int index = headings.indexOf(heading);
+        if (index != 0)
+            heading = headings.get(index - 1);
+        else
+            heading = headings.get(headings.size() - 1);
     }
 
-    public void turnRight(){
-        if(heading == Heading.N)
-            heading = Heading.E;
-        else if(heading == Heading.E)
-            heading = Heading.S;
-        else if (heading == Heading.S)
-            heading = Heading.W;
-        else heading = Heading.N;
+    public void turnRight() {
+        int index = headings.indexOf(heading);
+        if (index != headings.size()-1)
+            heading = headings.get(index + 1);
+        else
+            heading = headings.get(0);
     }
 
     public void incrX(){
