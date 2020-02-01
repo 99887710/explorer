@@ -31,10 +31,14 @@ class RoverTest {
 
     @Test
     void turnLeft() {
+        rover.turnLeft();
+        assertEquals(Heading.W, rover.getHeading());
     }
 
     @Test
     void turnRight() {
+        rover.turnRight();
+        assertEquals(Heading.E, rover.getHeading());
     }
 
     @Test
