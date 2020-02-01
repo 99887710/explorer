@@ -41,16 +41,15 @@ public class ControlPlane {
 
         configureBound(plateau, commands);
         List<Robotic> robotics = roverProducer.produce(commands, plateau);
-        System.out.println("Produced Rovers: " + roverProducer.getNum());
-        //action
+        execRoverActionCmd(robotics);
+    }
 
+    private void execRoverActionCmd(List<Robotic> robotics) {
         for (Robotic robotic : robotics) {
             Rover rover = (Rover) robotic;
             rover.execute();
             System.out.println(rover.toString());
         }
-
-
     }
 
     private void configureBound(Plateau plateau, List<Command> commands){
