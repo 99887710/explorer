@@ -87,6 +87,14 @@ class RoverTest {
     }
 
     @Test
+    void decrX() {
+        rover.setPosX(1);
+        rover.decrX();
+        Assertions.assertEquals(0, rover.getPosX());
+    }
+
+
+    @Test
     void decrX_out_of_bound() {
         rover.decrX();
         Assertions.assertTrue(rover.getPosX() < 0);
@@ -96,6 +104,13 @@ class RoverTest {
     void incrY() {
         rover.incrY();
         Assertions.assertEquals(1, rover.getPosY());
+    }
+
+    @Test
+    void decrY() {
+        rover.setPosY(1);
+        rover.decrY();
+        Assertions.assertEquals(0, rover.getPosY());
     }
 
     @Test
